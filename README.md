@@ -35,10 +35,11 @@ Para evitar la burocratización y mantener la eficiencia sin sobrecargar al usua
 
 El núcleo de este proyecto es su diseño de datos, estructurado lógicamente para garantizar la integridad referencial, la normalización de la información (evitando redundancias) y un rendimiento óptimo en consultas complejas (JOINs).
 
-### 🛠️ Stack Tecnológico Sugerido
+### 🛠️ Stack Tecnológico
 *   **Modelado de Datos:** Herramientas de diagramación Entidad-Relación.
 *   **Motor de Base de Datos:** Relacional (Ej. MariaDB / MySQL / PostgreSQL).
 *   **Lenguaje de Consulta:** SQL estructurado para la creación de esquemas (DDL) y manipulación de datos (DML).
+*   **Lenguaje de Programación** Java para hacer toda la comunicación y que el cliente pueda usar dicha solucion de manera efectiva.
 
 ### 🗄️ Modelos de Base de Datos
 
