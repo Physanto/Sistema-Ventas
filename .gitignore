@@ -1,4 +1,5 @@
 nbproject/
 
 manifest.mf
-/build/
+
+build/
