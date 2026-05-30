@@ -5,84 +5,85 @@
 package GUI;
 import javax.swing.*;
 import java.awt.*;
-
 /**
  *
  * @author mamia
  */
-public class FrmCliente extends javax.swing.JFrame {
-    JLabel titulo;
-    JLabel lblId, lblEmail, lblNombre, lblApellido, lblFecha;
-    JLabel lblCarrera, lblCalle, lblNumero, lblBarrio;
+public class FrmVenta extends javax.swing.JFrame {
 
-    JTextField txtId, txtEmail, txtNombre, txtApellido;
-    JTextField txtFecha, txtCarrera, txtCalle, txtNumero, txtBarrio;
+    JLabel titulo;
+    JLabel lblId, lblFecha, lblTotal;
+    JLabel lblMetodo, lblCliente, lblUsuario;
+
+    JTextField txtId, txtFecha, txtTotal;
+    JTextField txtMetodo, txtCliente, txtUsuario;
 
     JButton btnAgregar, btnActualizar, btnEliminar;
-    
-    public FrmCliente() {
+    /**
+     * Creates new form FrmVenta
+     */
+    public FrmVenta() {
         initComponents();
-            setTitle("CRUD CLIENTES");
-        setSize(450, 620);
+          setTitle("CRUD VENTAS");
+        setSize(500, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setLocationRelativeTo(null);
 
-        // COLOR FONDO
+        // FONDO
         getContentPane().setBackground(new Color(25, 25, 40));
 
         // TITULO
-        titulo = new JLabel("GESTIÓN DE CLIENTES");
-        titulo.setBounds(70, 20, 320, 40);
+        titulo = new JLabel("GESTIÓN DE VENTAS");
+        titulo.setBounds(90, 20, 320, 40);
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
         titulo.setForeground(new Color(0, 255, 200));
 
         // LABELS
-        lblId = new JLabel("ID Cliente:");
-        lblEmail = new JLabel("Email:");
-        lblNombre = new JLabel("Nombre:");
-        lblApellido = new JLabel("Apellido:");
-        lblFecha = new JLabel("Fecha Nacimiento:");
-        lblCarrera = new JLabel("Carrera:");
-        lblCalle = new JLabel("Calle:");
-        lblNumero = new JLabel("Número:");
-        lblBarrio = new JLabel("Barrio:");
+        lblId = new JLabel("ID Venta:");
+        lblFecha = new JLabel("Fecha:");
+        lblTotal = new JLabel("Total Venta:");
+        lblMetodo = new JLabel("Método Pago:");
+        lblCliente = new JLabel("ID Cliente:");
+        lblUsuario = new JLabel("ID Usuario:");
 
         JLabel[] labels = {
-            lblId, lblEmail, lblNombre, lblApellido,
-            lblFecha, lblCarrera, lblCalle,
-            lblNumero, lblBarrio
+            lblId, lblFecha, lblTotal,
+            lblMetodo, lblCliente, lblUsuario
         };
 
         for (JLabel lbl : labels) {
+
             lbl.setForeground(Color.WHITE);
             lbl.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
         }
 
         // TEXTFIELDS
         txtId = new JTextField();
-        txtEmail = new JTextField();
-        txtNombre = new JTextField();
-        txtApellido = new JTextField();
         txtFecha = new JTextField();
-        txtCarrera = new JTextField();
-        txtCalle = new JTextField();
-        txtNumero = new JTextField();
-        txtBarrio = new JTextField();
+        txtTotal = new JTextField();
+        txtMetodo = new JTextField();
+        txtCliente = new JTextField();
+        txtUsuario = new JTextField();
 
         JTextField[] campos = {
-            txtId, txtEmail, txtNombre, txtApellido,
-            txtFecha, txtCarrera, txtCalle,
-            txtNumero, txtBarrio
+            txtId, txtFecha, txtTotal,
+            txtMetodo, txtCliente, txtUsuario
         };
 
         for (JTextField txt : campos) {
+
             txt.setBackground(new Color(40, 40, 60));
             txt.setForeground(Color.WHITE);
             txt.setCaretColor(Color.WHITE);
-            txt.setBorder(BorderFactory.createLineBorder(
-                    new Color(0, 255, 200), 2));
+
+            txt.setBorder(
+                    BorderFactory.createLineBorder(
+                            new Color(0, 255, 200), 2));
+
             txt.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
         }
 
         // BOTONES
@@ -100,6 +101,7 @@ public class FrmCliente extends javax.swing.JFrame {
             btn.setFont(new Font("Segoe UI", Font.BOLD, 14));
             btn.setForeground(Color.WHITE);
             btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         }
 
         btnAgregar.setBackground(new Color(0, 180, 120));
@@ -109,35 +111,26 @@ public class FrmCliente extends javax.swing.JFrame {
         // POSICIONES
 
         lblId.setBounds(40, 90, 140, 25);
-        txtId.setBounds(200, 90, 180, 30);
+        txtId.setBounds(220, 90, 200, 30);
 
-        lblEmail.setBounds(40, 130, 140, 25);
-        txtEmail.setBounds(200, 130, 180, 30);
+        lblFecha.setBounds(40, 150, 140, 25);
+        txtFecha.setBounds(220, 150, 200, 30);
 
-        lblNombre.setBounds(40, 170, 140, 25);
-        txtNombre.setBounds(200, 170, 180, 30);
+        lblTotal.setBounds(40, 210, 140, 25);
+        txtTotal.setBounds(220, 210, 200, 30);
 
-        lblApellido.setBounds(40, 210, 140, 25);
-        txtApellido.setBounds(200, 210, 180, 30);
+        lblMetodo.setBounds(40, 270, 140, 25);
+        txtMetodo.setBounds(220, 270, 200, 30);
 
-        lblFecha.setBounds(40, 250, 140, 25);
-        txtFecha.setBounds(200, 250, 180, 30);
+        lblCliente.setBounds(40, 330, 140, 25);
+        txtCliente.setBounds(220, 330, 200, 30);
 
-        lblCarrera.setBounds(40, 290, 140, 25);
-        txtCarrera.setBounds(200, 290, 180, 30);
+        lblUsuario.setBounds(40, 390, 140, 25);
+        txtUsuario.setBounds(220, 390, 200, 30);
 
-        lblCalle.setBounds(40, 330, 140, 25);
-        txtCalle.setBounds(200, 330, 180, 30);
-
-        lblNumero.setBounds(40, 370, 140, 25);
-        txtNumero.setBounds(200, 370, 180, 30);
-
-        lblBarrio.setBounds(40, 410, 140, 25);
-        txtBarrio.setBounds(200, 410, 180, 30);
-
-        btnAgregar.setBounds(30, 500, 110, 40);
-        btnActualizar.setBounds(160, 500, 120, 40);
-        btnEliminar.setBounds(300, 500, 110, 40);
+        btnAgregar.setBounds(30, 460, 120, 40);
+        btnActualizar.setBounds(180, 460, 120, 40);
+        btnEliminar.setBounds(330, 460, 120, 40);
 
         // AGREGAR COMPONENTES
 
@@ -146,29 +139,20 @@ public class FrmCliente extends javax.swing.JFrame {
         add(lblId);
         add(txtId);
 
-        add(lblEmail);
-        add(txtEmail);
-
-        add(lblNombre);
-        add(txtNombre);
-
-        add(lblApellido);
-        add(txtApellido);
-
         add(lblFecha);
         add(txtFecha);
 
-        add(lblCarrera);
-        add(txtCarrera);
+        add(lblTotal);
+        add(txtTotal);
 
-        add(lblCalle);
-        add(txtCalle);
+        add(lblMetodo);
+        add(txtMetodo);
 
-        add(lblNumero);
-        add(txtNumero);
+        add(lblCliente);
+        add(txtCliente);
 
-        add(lblBarrio);
-        add(txtBarrio);
+        add(lblUsuario);
+        add(txtUsuario);
 
         add(btnAgregar);
         add(btnActualizar);
@@ -190,11 +174,11 @@ public class FrmCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 716, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 563, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -204,10 +188,9 @@ public class FrmCliente extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        
-        FrmCliente formulario = new FrmCliente();
+        FrmVenta formulario = new FrmVenta();
         formulario.setVisible(true);
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -220,20 +203,20 @@ public class FrmCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCliente().setVisible(true);
+                new FrmVenta().setVisible(true);
             }
         });
     }
