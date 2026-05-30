@@ -10,7 +10,7 @@ package Controlador;
  */
 
 
-import GUI.FrmCliente;
+import Vista.FrmCliente;
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
 import java.sql.Date;

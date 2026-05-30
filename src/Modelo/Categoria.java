@@ -8,8 +8,9 @@ package Modelo;
  *
  * @author hitim
  */
+
 public class Categoria {
-    
+
     private int idCategoria;
     private String nombre;
 
@@ -37,5 +38,9 @@ public class Categoria {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
 
