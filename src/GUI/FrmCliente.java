@@ -5,39 +5,46 @@
 package GUI;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author mamia
  */
 public class FrmCliente extends javax.swing.JFrame {
-    JLabel titulo;
-    JLabel lblId, lblEmail, lblNombre, lblApellido, lblFecha;
-    JLabel lblCarrera, lblCalle, lblNumero, lblBarrio;
+
+    JLabel titulo, lblLista;
+
+    JLabel lblId, lblEmail, lblNombre, lblApellido;
+    JLabel lblFecha, lblCarrera, lblCalle, lblNumero, lblBarrio;
 
     JTextField txtId, txtEmail, txtNombre, txtApellido;
     JTextField txtFecha, txtCarrera, txtCalle, txtNumero, txtBarrio;
 
     JButton btnAgregar, btnActualizar, btnEliminar;
-    
+    JButton btnBuscar, btnListar;
+
+    JTable tablaClientes;
+    JScrollPane scrollTabla;
     public FrmCliente() {
         initComponents();
-            setTitle("CRUD CLIENTES");
-        setSize(450, 620);
+        
+   
+       setTitle("GESTIÓN DE CLIENTES");
+        setSize(1000, 800);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        setLocationRelativeTo(null);
 
-        // COLOR FONDO
-        getContentPane().setBackground(new Color(25, 25, 40));
+        getContentPane().setBackground(new Color(25,25,40));
 
-        // TITULO
         titulo = new JLabel("GESTIÓN DE CLIENTES");
-        titulo.setBounds(70, 20, 320, 40);
-        titulo.setFont(new Font("Arial", Font.BOLD, 24));
-        titulo.setForeground(new Color(0, 255, 200));
+        titulo.setBounds(300,20,400,40);
+        titulo.setFont(new Font("Arial", Font.BOLD, 28));
+        titulo.setForeground(new Color(0,255,200));
 
-        // LABELS
+        add(titulo);
+
         lblId = new JLabel("ID Cliente:");
         lblEmail = new JLabel("Email:");
         lblNombre = new JLabel("Nombre:");
@@ -49,17 +56,16 @@ public class FrmCliente extends javax.swing.JFrame {
         lblBarrio = new JLabel("Barrio:");
 
         JLabel[] labels = {
-            lblId, lblEmail, lblNombre, lblApellido,
-            lblFecha, lblCarrera, lblCalle,
-            lblNumero, lblBarrio
+                lblId,lblEmail,lblNombre,lblApellido,
+                lblFecha,lblCarrera,lblCalle,lblNumero,lblBarrio
         };
 
-        for (JLabel lbl : labels) {
+        for(JLabel lbl : labels){
             lbl.setForeground(Color.WHITE);
             lbl.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            add(lbl);
         }
 
-        // TEXTFIELDS
         txtId = new JTextField();
         txtEmail = new JTextField();
         txtNombre = new JTextField();
@@ -71,108 +77,141 @@ public class FrmCliente extends javax.swing.JFrame {
         txtBarrio = new JTextField();
 
         JTextField[] campos = {
-            txtId, txtEmail, txtNombre, txtApellido,
-            txtFecha, txtCarrera, txtCalle,
-            txtNumero, txtBarrio
+                txtId,txtEmail,txtNombre,txtApellido,
+                txtFecha,txtCarrera,txtCalle,
+                txtNumero,txtBarrio
         };
 
-        for (JTextField txt : campos) {
-            txt.setBackground(new Color(40, 40, 60));
+        for(JTextField txt : campos){
+
+            txt.setBackground(new Color(40,40,60));
             txt.setForeground(Color.WHITE);
             txt.setCaretColor(Color.WHITE);
-            txt.setBorder(BorderFactory.createLineBorder(
-                    new Color(0, 255, 200), 2));
-            txt.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+            txt.setBorder(
+                    BorderFactory.createLineBorder(
+                            new Color(0,255,200),2));
+
+            add(txt);
         }
 
-        // BOTONES
+        lblId.setBounds(50,100,150,25);
+        txtId.setBounds(220,100,220,30);
+
+        lblEmail.setBounds(50,140,150,25);
+        txtEmail.setBounds(220,140,220,30);
+
+        lblNombre.setBounds(50,180,150,25);
+        txtNombre.setBounds(220,180,220,30);
+
+        lblApellido.setBounds(50,220,150,25);
+        txtApellido.setBounds(220,220,220,30);
+
+        lblFecha.setBounds(50,260,150,25);
+        txtFecha.setBounds(220,260,220,30);
+
+        lblCarrera.setBounds(50,300,150,25);
+        txtCarrera.setBounds(220,300,220,30);
+
+        lblCalle.setBounds(50,340,150,25);
+        txtCalle.setBounds(220,340,220,30);
+
+        lblNumero.setBounds(50,380,150,25);
+        txtNumero.setBounds(220,380,220,30);
+
+        lblBarrio.setBounds(50,420,150,25);
+        txtBarrio.setBounds(220,420,220,30);
+
         btnAgregar = new JButton("Agregar");
         btnActualizar = new JButton("Actualizar");
         btnEliminar = new JButton("Eliminar");
+        btnBuscar = new JButton("Buscar");
+        btnListar = new JButton("Listar");
+
+        btnAgregar.setBackground(new Color(0,180,120));
+        btnActualizar.setBackground(new Color(0,120,255));
+        btnEliminar.setBackground(new Color(220,50,50));
+        btnBuscar.setBackground(new Color(255,140,0));
+        btnListar.setBackground(new Color(128,0,255));
 
         JButton[] botones = {
-            btnAgregar, btnActualizar, btnEliminar
+                btnAgregar,btnActualizar,
+                btnEliminar,btnBuscar,btnListar
         };
 
-        for (JButton btn : botones) {
+        for(JButton btn : botones){
 
-            btn.setFocusPainted(false);
-            btn.setFont(new Font("Segoe UI", Font.BOLD, 14));
             btn.setForeground(Color.WHITE);
-            btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            btn.setFocusPainted(false);
+            btn.setFont(new Font("Segoe UI",Font.BOLD,14));
+
+            add(btn);
         }
 
-        btnAgregar.setBackground(new Color(0, 180, 120));
-        btnActualizar.setBackground(new Color(0, 120, 255));
-        btnEliminar.setBackground(new Color(220, 50, 50));
+        btnAgregar.setBounds(50,500,120,40);
+        btnActualizar.setBounds(190,500,120,40);
+        btnEliminar.setBounds(330,500,120,40);
+        btnBuscar.setBounds(470,500,120,40);
+        btnListar.setBounds(610,500,120,40);
 
-        // POSICIONES
+        lblLista = new JLabel("LISTA DE CLIENTES");
+        lblLista.setBounds(350,560,300,30);
+        lblLista.setForeground(new Color(128,0,255));
+        lblLista.setFont(new Font("Arial",Font.BOLD,22));
 
-        lblId.setBounds(40, 90, 140, 25);
-        txtId.setBounds(200, 90, 180, 30);
+        add(lblLista);
 
-        lblEmail.setBounds(40, 130, 140, 25);
-        txtEmail.setBounds(200, 130, 180, 30);
+        tablaClientes = new JTable();
 
-        lblNombre.setBounds(40, 170, 140, 25);
-        txtNombre.setBounds(200, 170, 180, 30);
+        tablaClientes.setModel(
+                new DefaultTableModel(
+                        new Object[][]{},
+                        new String[]{
+                                "ID",
+                                "Email",
+                                "Nombre",
+                                "Apellido",
+                                "Fecha",
+                                "Carrera",
+                                "Calle",
+                                "Número",
+                                "Barrio"
+                        }
+                )
+        );
 
-        lblApellido.setBounds(40, 210, 140, 25);
-        txtApellido.setBounds(200, 210, 180, 30);
+        tablaClientes.setBackground(new Color(35,35,55));
+        tablaClientes.setForeground(Color.WHITE);
 
-        lblFecha.setBounds(40, 250, 140, 25);
-        txtFecha.setBounds(200, 250, 180, 30);
+        tablaClientes.setGridColor(
+                new Color(0,255,200));
 
-        lblCarrera.setBounds(40, 290, 140, 25);
-        txtCarrera.setBounds(200, 290, 180, 30);
+        tablaClientes.setSelectionBackground(
+                new Color(0,255,200));
 
-        lblCalle.setBounds(40, 330, 140, 25);
-        txtCalle.setBounds(200, 330, 180, 30);
+        tablaClientes.setSelectionForeground(
+                Color.BLACK);
 
-        lblNumero.setBounds(40, 370, 140, 25);
-        txtNumero.setBounds(200, 370, 180, 30);
+        tablaClientes.setRowHeight(28);
 
-        lblBarrio.setBounds(40, 410, 140, 25);
-        txtBarrio.setBounds(200, 410, 180, 30);
+        tablaClientes.getTableHeader().setBackground(
+                new Color(0,255,200));
 
-        btnAgregar.setBounds(30, 500, 110, 40);
-        btnActualizar.setBounds(160, 500, 120, 40);
-        btnEliminar.setBounds(300, 500, 110, 40);
+        tablaClientes.getTableHeader().setForeground(
+                Color.BLACK);
 
-        // AGREGAR COMPONENTES
+        tablaClientes.getTableHeader().setFont(
+                new Font("Segoe UI",Font.BOLD,14));
 
-        add(titulo);
+        scrollTabla = new JScrollPane(tablaClientes);
 
-        add(lblId);
-        add(txtId);
+        scrollTabla.setBounds(20,600,940,140);
 
-        add(lblEmail);
-        add(txtEmail);
+        scrollTabla.setBorder(
+                BorderFactory.createLineBorder(
+                        new Color(0,255,200),3));
 
-        add(lblNombre);
-        add(txtNombre);
-
-        add(lblApellido);
-        add(txtApellido);
-
-        add(lblFecha);
-        add(txtFecha);
-
-        add(lblCarrera);
-        add(txtCarrera);
-
-        add(lblCalle);
-        add(txtCalle);
-
-        add(lblNumero);
-        add(txtNumero);
-
-        add(lblBarrio);
-        add(txtBarrio);
-
-        add(btnAgregar);
-        add(btnActualizar);
-        add(btnEliminar);
+        add(scrollTabla);
     }
 
     /**

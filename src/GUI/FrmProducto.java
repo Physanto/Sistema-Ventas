@@ -4,6 +4,7 @@
  */
 package GUI;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
@@ -11,34 +12,40 @@ import java.awt.*;
  * @author mamia
  */
 public class FrmProducto extends javax.swing.JFrame {
+  JLabel titulo, lblLista;
 
-    JLabel titulo;
-    JLabel lblId, lblNombre, lblStock, lblPrecio;
-    JLabel lblMinimo, lblFecha, lblUbicacion, lblCategoria;
+    JLabel lblId, lblNombre, lblStock;
+    JLabel lblPrecio, lblMinimo;
+    JLabel lblFecha, lblUbicacion;
 
-    JTextField txtId, txtNombre, txtStock, txtPrecio;
-    JTextField txtMinimo, txtFecha, txtUbicacion, txtCategoria;
+    JTextField txtId, txtNombre, txtStock;
+    JTextField txtPrecio, txtMinimo;
+    JTextField txtFecha, txtUbicacion;
 
     JButton btnAgregar, btnActualizar, btnEliminar;
+    JButton btnBuscar, btnListar;
+
+    JTable tablaProductos;
+    JScrollPane scrollTabla;
+
 
     public FrmProducto() {
         initComponents();
-         setTitle("CRUD PRODUCTOS");
-        setSize(500, 620);
+  setTitle("GESTIÓN DE PRODUCTOS");
+        setSize(1000, 800);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        setLocationRelativeTo(null);
 
-        // COLOR DE FONDO
-        getContentPane().setBackground(new Color(25, 25, 40));
+        getContentPane().setBackground(new Color(25,25,40));
 
-        // TITULO
         titulo = new JLabel("GESTIÓN DE PRODUCTOS");
-        titulo.setBounds(70, 20, 350, 40);
-        titulo.setFont(new Font("Arial", Font.BOLD, 24));
-        titulo.setForeground(new Color(0, 255, 200));
+        titulo.setBounds(280,20,450,40);
+        titulo.setFont(new Font("Arial", Font.BOLD, 28));
+        titulo.setForeground(new Color(0,255,200));
 
-        // LABELS
+        add(titulo);
+
         lblId = new JLabel("ID Producto:");
         lblNombre = new JLabel("Nombre:");
         lblStock = new JLabel("Stock Actual:");
@@ -46,21 +53,21 @@ public class FrmProducto extends javax.swing.JFrame {
         lblMinimo = new JLabel("Stock Mínimo:");
         lblFecha = new JLabel("Fecha Vencimiento:");
         lblUbicacion = new JLabel("Ubicación:");
-        lblCategoria = new JLabel("ID Categoría:");
 
         JLabel[] labels = {
-            lblId, lblNombre, lblStock, lblPrecio,
-            lblMinimo, lblFecha, lblUbicacion, lblCategoria
+                lblId,lblNombre,lblStock,
+                lblPrecio,lblMinimo,
+                lblFecha,lblUbicacion
         };
 
-        for (JLabel lbl : labels) {
+        for(JLabel lbl : labels){
 
             lbl.setForeground(Color.WHITE);
             lbl.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
+            add(lbl);
         }
 
-        // TEXTFIELDS
         txtId = new JTextField();
         txtNombre = new JTextField();
         txtStock = new JTextField();
@@ -68,109 +75,138 @@ public class FrmProducto extends javax.swing.JFrame {
         txtMinimo = new JTextField();
         txtFecha = new JTextField();
         txtUbicacion = new JTextField();
-        txtCategoria = new JTextField();
 
         JTextField[] campos = {
-            txtId, txtNombre, txtStock, txtPrecio,
-            txtMinimo, txtFecha, txtUbicacion, txtCategoria
+                txtId,txtNombre,txtStock,
+                txtPrecio,txtMinimo,
+                txtFecha,txtUbicacion
         };
 
-        for (JTextField txt : campos) {
+        for(JTextField txt : campos){
 
-            txt.setBackground(new Color(40, 40, 60));
+            txt.setBackground(new Color(40,40,60));
             txt.setForeground(Color.WHITE);
             txt.setCaretColor(Color.WHITE);
 
             txt.setBorder(
                     BorderFactory.createLineBorder(
-                            new Color(0, 255, 200), 2));
+                            new Color(0,255,200),2));
 
-            txt.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            add(txt);
         }
 
-        // BOTONES
+        lblId.setBounds(50,100,150,25);
+        txtId.setBounds(220,100,220,30);
+
+        lblNombre.setBounds(50,150,150,25);
+        txtNombre.setBounds(220,150,220,30);
+
+        lblStock.setBounds(50,200,150,25);
+        txtStock.setBounds(220,200,220,30);
+
+        lblPrecio.setBounds(50,250,150,25);
+        txtPrecio.setBounds(220,250,220,30);
+
+        lblMinimo.setBounds(50,300,150,25);
+        txtMinimo.setBounds(220,300,220,30);
+
+        lblFecha.setBounds(50,350,150,25);
+        txtFecha.setBounds(220,350,220,30);
+
+        lblUbicacion.setBounds(50,400,150,25);
+        txtUbicacion.setBounds(220,400,220,30);
+
         btnAgregar = new JButton("Agregar");
         btnActualizar = new JButton("Actualizar");
         btnEliminar = new JButton("Eliminar");
+        btnBuscar = new JButton("Buscar");
+        btnListar = new JButton("Listar");
+
+        btnAgregar.setBackground(new Color(0,180,120));
+        btnActualizar.setBackground(new Color(0,120,255));
+        btnEliminar.setBackground(new Color(220,50,50));
+        btnBuscar.setBackground(new Color(255,140,0));
+        btnListar.setBackground(new Color(128,0,255));
 
         JButton[] botones = {
-            btnAgregar, btnActualizar, btnEliminar
+                btnAgregar,
+                btnActualizar,
+                btnEliminar,
+                btnBuscar,
+                btnListar
         };
 
-        for (JButton btn : botones) {
+        for(JButton btn : botones){
 
-            btn.setFocusPainted(false);
-            btn.setFont(new Font("Segoe UI", Font.BOLD, 14));
             btn.setForeground(Color.WHITE);
-            btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            btn.setFocusPainted(false);
+            btn.setFont(new Font("Segoe UI",Font.BOLD,14));
 
+            add(btn);
         }
 
-        btnAgregar.setBackground(new Color(0, 180, 120));
-        btnActualizar.setBackground(new Color(0, 120, 255));
-        btnEliminar.setBackground(new Color(220, 50, 50));
+        btnAgregar.setBounds(50,500,120,40);
+        btnActualizar.setBounds(190,500,120,40);
+        btnEliminar.setBounds(330,500,120,40);
+        btnBuscar.setBounds(470,500,120,40);
+        btnListar.setBounds(610,500,120,40);
 
-        // POSICIONES
+        lblLista = new JLabel("LISTA DE PRODUCTOS");
+        lblLista.setBounds(330,560,350,30);
+        lblLista.setForeground(new Color(128,0,255));
+        lblLista.setFont(new Font("Arial",Font.BOLD,22));
 
-        lblId.setBounds(40, 90, 150, 25);
-        txtId.setBounds(220, 90, 200, 30);
+        add(lblLista);
 
-        lblNombre.setBounds(40, 140, 150, 25);
-        txtNombre.setBounds(220, 140, 200, 30);
+        tablaProductos = new JTable();
 
-        lblStock.setBounds(40, 190, 150, 25);
-        txtStock.setBounds(220, 190, 200, 30);
+        tablaProductos.setModel(
+                new DefaultTableModel(
+                        new Object[][]{},
+                        new String[]{
+                                "ID",
+                                "Nombre",
+                                "Stock",
+                                "Precio",
+                                "Stock Mínimo",
+                                "Vencimiento",
+                                "Ubicación"
+                        }
+                )
+        );
 
-        lblPrecio.setBounds(40, 240, 150, 25);
-        txtPrecio.setBounds(220, 240, 200, 30);
+        tablaProductos.setBackground(new Color(35,35,55));
+        tablaProductos.setForeground(Color.WHITE);
 
-        lblMinimo.setBounds(40, 290, 150, 25);
-        txtMinimo.setBounds(220, 290, 200, 30);
+        tablaProductos.setGridColor(
+                new Color(0,255,200));
 
-        lblFecha.setBounds(40, 340, 150, 25);
-        txtFecha.setBounds(220, 340, 200, 30);
+        tablaProductos.setSelectionBackground(
+                new Color(0,255,200));
 
-        lblUbicacion.setBounds(40, 390, 150, 25);
-        txtUbicacion.setBounds(220, 390, 200, 30);
+        tablaProductos.setSelectionForeground(
+                Color.BLACK);
 
-        lblCategoria.setBounds(40, 440, 150, 25);
-        txtCategoria.setBounds(220, 440, 200, 30);
+        tablaProductos.setRowHeight(28);
 
-        btnAgregar.setBounds(30, 520, 120, 40);
-        btnActualizar.setBounds(180, 520, 120, 40);
-        btnEliminar.setBounds(330, 520, 120, 40);
+        tablaProductos.getTableHeader().setBackground(
+                new Color(0,255,200));
 
-        // AGREGAR COMPONENTES
+        tablaProductos.getTableHeader().setForeground(
+                Color.BLACK);
 
-        add(titulo);
+        tablaProductos.getTableHeader().setFont(
+                new Font("Segoe UI",Font.BOLD,14));
 
-        add(lblId);
-        add(txtId);
+        scrollTabla = new JScrollPane(tablaProductos);
 
-        add(lblNombre);
-        add(txtNombre);
+        scrollTabla.setBounds(20,600,940,140);
 
-        add(lblStock);
-        add(txtStock);
+        scrollTabla.setBorder(
+                BorderFactory.createLineBorder(
+                        new Color(0,255,200),3));
 
-        add(lblPrecio);
-        add(txtPrecio);
-
-        add(lblMinimo);
-        add(txtMinimo);
-
-        add(lblFecha);
-        add(txtFecha);
-
-        add(lblUbicacion);
-        add(txtUbicacion);
-
-        add(lblCategoria);
-        add(txtCategoria);
-
-        add(btnAgregar);
-        add(btnActualizar);
-        add(btnEliminar);
+        add(scrollTabla);
     }
 
     /**
