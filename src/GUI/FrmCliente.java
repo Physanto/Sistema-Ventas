@@ -15,14 +15,14 @@ public class FrmCliente extends javax.swing.JFrame {
 
     JLabel titulo, lblLista;
 
-    JLabel lblId, lblEmail, lblNombre, lblApellido;
+    JLabel lblEmail, lblNombre, lblApellido;
     JLabel lblFecha, lblCarrera, lblCalle, lblNumero, lblBarrio;
 
-    JTextField txtId, txtEmail, txtNombre, txtApellido;
+    JTextField txtEmail, txtNombre, txtApellido;
     JTextField txtFecha, txtCarrera, txtCalle, txtNumero, txtBarrio;
 
     JButton btnAgregar, btnActualizar, btnEliminar;
-    JButton btnBuscar, btnListar;
+    JButton btnListar, btnLimpiar;
 
     JTable tablaClientes;
     JScrollPane scrollTabla;
@@ -39,13 +39,14 @@ public class FrmCliente extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(25,25,40));
 
         titulo = new JLabel("GESTIÓN DE CLIENTES");
-        titulo.setBounds(300,20,400,40);
+        titulo.setBounds(300, 20, 400, 40);
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 28));
         titulo.setForeground(new Color(0,255,200));
 
         add(titulo);
 
-        lblId = new JLabel("ID Cliente:");
+
         lblEmail = new JLabel("Email:");
         lblNombre = new JLabel("Nombre:");
         lblApellido = new JLabel("Apellido:");
@@ -56,7 +57,7 @@ public class FrmCliente extends javax.swing.JFrame {
         lblBarrio = new JLabel("Barrio:");
 
         JLabel[] labels = {
-                lblId,lblEmail,lblNombre,lblApellido,
+                lblEmail,lblNombre,lblApellido,
                 lblFecha,lblCarrera,lblCalle,lblNumero,lblBarrio
         };
 
@@ -66,7 +67,7 @@ public class FrmCliente extends javax.swing.JFrame {
             add(lbl);
         }
 
-        txtId = new JTextField();
+        
         txtEmail = new JTextField();
         txtNombre = new JTextField();
         txtApellido = new JTextField();
@@ -77,7 +78,7 @@ public class FrmCliente extends javax.swing.JFrame {
         txtBarrio = new JTextField();
 
         JTextField[] campos = {
-                txtId,txtEmail,txtNombre,txtApellido,
+                txtEmail,txtNombre,txtApellido,
                 txtFecha,txtCarrera,txtCalle,
                 txtNumero,txtBarrio
         };
@@ -95,48 +96,52 @@ public class FrmCliente extends javax.swing.JFrame {
             add(txt);
         }
 
-        lblId.setBounds(50,100,150,25);
-        txtId.setBounds(220,100,220,30);
+        
 
-        lblEmail.setBounds(50,140,150,25);
-        txtEmail.setBounds(220,140,220,30);
+        
+        lblEmail.setBounds(300, 140, 150, 25);
+        txtEmail.setBounds(470, 140, 220, 30);
 
-        lblNombre.setBounds(50,180,150,25);
-        txtNombre.setBounds(220,180,220,30);
+        lblNombre.setBounds(300, 180, 150, 25);
+        txtNombre.setBounds(470, 180, 220, 30);
 
-        lblApellido.setBounds(50,220,150,25);
-        txtApellido.setBounds(220,220,220,30);
+        lblApellido.setBounds(300, 220, 150, 25);
+        txtApellido.setBounds(470, 220, 220, 30);
 
-        lblFecha.setBounds(50,260,150,25);
-        txtFecha.setBounds(220,260,220,30);
+        lblFecha.setBounds(300, 260, 150, 25);
+        txtFecha.setBounds(470, 260, 220, 30);
 
-        lblCarrera.setBounds(50,300,150,25);
-        txtCarrera.setBounds(220,300,220,30);
+        lblCarrera.setBounds(300, 300, 150, 25);
+        txtCarrera.setBounds(470, 300, 220, 30);
 
-        lblCalle.setBounds(50,340,150,25);
-        txtCalle.setBounds(220,340,220,30);
+        lblCalle.setBounds(300, 340, 150, 25);
+        txtCalle.setBounds(470, 340, 220, 30);
 
-        lblNumero.setBounds(50,380,150,25);
-        txtNumero.setBounds(220,380,220,30);
+        lblNumero.setBounds(300, 380, 150, 25);
+        txtNumero.setBounds(470, 380, 220, 30);
 
-        lblBarrio.setBounds(50,420,150,25);
-        txtBarrio.setBounds(220,420,220,30);
+        lblBarrio.setBounds(300, 420, 150, 25);
+        txtBarrio.setBounds(470, 420, 220, 30);
+
 
         btnAgregar = new JButton("Agregar");
         btnActualizar = new JButton("Actualizar");
         btnEliminar = new JButton("Eliminar");
-        btnBuscar = new JButton("Buscar");
         btnListar = new JButton("Listar");
+        btnLimpiar = new JButton("Limpiar");
 
         btnAgregar.setBackground(new Color(0,180,120));
         btnActualizar.setBackground(new Color(0,120,255));
         btnEliminar.setBackground(new Color(220,50,50));
-        btnBuscar.setBackground(new Color(255,140,0));
         btnListar.setBackground(new Color(128,0,255));
+        btnLimpiar.setBackground(new Color(120,120,120));
 
         JButton[] botones = {
-                btnAgregar,btnActualizar,
-                btnEliminar,btnBuscar,btnListar
+        btnAgregar,
+        btnActualizar,
+        btnEliminar,
+        btnListar,
+        btnLimpiar
         };
 
         for(JButton btn : botones){
@@ -148,11 +153,13 @@ public class FrmCliente extends javax.swing.JFrame {
             add(btn);
         }
 
-        btnAgregar.setBounds(50,500,120,40);
-        btnActualizar.setBounds(190,500,120,40);
-        btnEliminar.setBounds(330,500,120,40);
-        btnBuscar.setBounds(470,500,120,40);
-        btnListar.setBounds(610,500,120,40);
+        
+        btnAgregar.setBounds(160, 500, 120, 40);
+        btnActualizar.setBounds(300, 500, 120, 40);
+        btnEliminar.setBounds(440, 500, 120, 40);
+        btnListar.setBounds(580, 500, 120, 40);
+        btnLimpiar.setBounds(720, 500, 120, 40);
+
 
         lblLista = new JLabel("LISTA DE CLIENTES");
         lblLista.setBounds(350,560,300,30);
@@ -214,6 +221,74 @@ public class FrmCliente extends javax.swing.JFrame {
         add(scrollTabla);
     }
 
+    public void limpiarCampos(){
+
+    txtEmail.setText("");
+    txtNombre.setText("");
+    txtApellido.setText("");
+    txtFecha.setText("");
+    txtCarrera.setText("");
+    txtCalle.setText("");
+    txtNumero.setText("");
+    txtBarrio.setText("");
+
+    }   
+    
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public JButton getBtnListar() {
+        return btnListar;
+    }
+
+    public JButton getBtnLimpiar() {
+        return btnLimpiar;
+    }
+    
+    public JTextField getTxtEmail() {
+    return txtEmail;
+}
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public JTextField getTxtApellido() {
+        return txtApellido;
+    }
+
+    public JTextField getTxtFecha() {
+        return txtFecha;
+    }
+
+    public JTextField getTxtCarrera() {
+        return txtCarrera;
+    }
+
+    public JTextField getTxtCalle() {
+        return txtCalle;
+    }
+
+    public JTextField getTxtNumero() {
+        return txtNumero;
+    }
+
+    public JTextField getTxtBarrio() {
+        return txtBarrio;
+    }
+
+    public JTable getTablaClientes() {
+        return tablaClientes;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,8 +320,6 @@ public class FrmCliente extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         
-        FrmCliente formulario = new FrmCliente();
-        formulario.setVisible(true);
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 

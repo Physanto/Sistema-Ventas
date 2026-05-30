@@ -14,16 +14,16 @@ import java.awt.*;
 public class FrmProducto extends javax.swing.JFrame {
   JLabel titulo, lblLista;
 
-    JLabel lblId, lblNombre, lblStock;
+    JLabel lblNombre, lblStock;
     JLabel lblPrecio, lblMinimo;
     JLabel lblFecha, lblUbicacion;
 
-    JTextField txtId, txtNombre, txtStock;
+    JTextField txtNombre, txtStock;
     JTextField txtPrecio, txtMinimo;
     JTextField txtFecha, txtUbicacion;
 
     JButton btnAgregar, btnActualizar, btnEliminar;
-    JButton btnBuscar, btnListar;
+    JButton btnListar, btnLimpiar;
 
     JTable tablaProductos;
     JScrollPane scrollTabla;
@@ -40,13 +40,14 @@ public class FrmProducto extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(25,25,40));
 
         titulo = new JLabel("GESTIÓN DE PRODUCTOS");
-        titulo.setBounds(280,20,450,40);
+        titulo.setBounds(300, 20, 400, 40);
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 28));
         titulo.setForeground(new Color(0,255,200));
 
         add(titulo);
 
-        lblId = new JLabel("ID Producto:");
+        
         lblNombre = new JLabel("Nombre:");
         lblStock = new JLabel("Stock Actual:");
         lblPrecio = new JLabel("Precio Venta:");
@@ -55,7 +56,7 @@ public class FrmProducto extends javax.swing.JFrame {
         lblUbicacion = new JLabel("Ubicación:");
 
         JLabel[] labels = {
-                lblId,lblNombre,lblStock,
+                lblNombre,lblStock,
                 lblPrecio,lblMinimo,
                 lblFecha,lblUbicacion
         };
@@ -68,7 +69,7 @@ public class FrmProducto extends javax.swing.JFrame {
             add(lbl);
         }
 
-        txtId = new JTextField();
+        
         txtNombre = new JTextField();
         txtStock = new JTextField();
         txtPrecio = new JTextField();
@@ -77,7 +78,7 @@ public class FrmProducto extends javax.swing.JFrame {
         txtUbicacion = new JTextField();
 
         JTextField[] campos = {
-                txtId,txtNombre,txtStock,
+                txtNombre,txtStock,
                 txtPrecio,txtMinimo,
                 txtFecha,txtUbicacion
         };
@@ -95,45 +96,47 @@ public class FrmProducto extends javax.swing.JFrame {
             add(txt);
         }
 
-        lblId.setBounds(50,100,150,25);
-        txtId.setBounds(220,100,220,30);
+        
 
-        lblNombre.setBounds(50,150,150,25);
-        txtNombre.setBounds(220,150,220,30);
+        
 
-        lblStock.setBounds(50,200,150,25);
-        txtStock.setBounds(220,200,220,30);
+        lblNombre.setBounds(300, 150, 150, 25);
+        txtNombre.setBounds(470, 150, 220, 30);
 
-        lblPrecio.setBounds(50,250,150,25);
-        txtPrecio.setBounds(220,250,220,30);
+        lblStock.setBounds(300, 200, 150, 25);
+        txtStock.setBounds(470, 200, 220, 30);
 
-        lblMinimo.setBounds(50,300,150,25);
-        txtMinimo.setBounds(220,300,220,30);
+        lblPrecio.setBounds(300, 250, 150, 25);
+        txtPrecio.setBounds(470, 250, 220, 30);
 
-        lblFecha.setBounds(50,350,150,25);
-        txtFecha.setBounds(220,350,220,30);
+        lblMinimo.setBounds(300, 300, 150, 25);
+        txtMinimo.setBounds(470, 300, 220, 30);
 
-        lblUbicacion.setBounds(50,400,150,25);
-        txtUbicacion.setBounds(220,400,220,30);
+        lblFecha.setBounds(300, 350, 150, 25);
+        txtFecha.setBounds(470, 350, 220, 30);
+
+        lblUbicacion.setBounds(300, 400, 150, 25);
+        txtUbicacion.setBounds(470, 400, 220, 30);
+
 
         btnAgregar = new JButton("Agregar");
         btnActualizar = new JButton("Actualizar");
         btnEliminar = new JButton("Eliminar");
-        btnBuscar = new JButton("Buscar");
+        btnLimpiar = new JButton("Limpiar");
         btnListar = new JButton("Listar");
 
         btnAgregar.setBackground(new Color(0,180,120));
         btnActualizar.setBackground(new Color(0,120,255));
         btnEliminar.setBackground(new Color(220,50,50));
-        btnBuscar.setBackground(new Color(255,140,0));
+        btnLimpiar.setBackground(new Color(120,120,120));
         btnListar.setBackground(new Color(128,0,255));
 
         JButton[] botones = {
-                btnAgregar,
-                btnActualizar,
-                btnEliminar,
-                btnBuscar,
-                btnListar
+            btnAgregar,
+            btnActualizar,
+            btnEliminar,
+            btnListar,
+            btnLimpiar
         };
 
         for(JButton btn : botones){
@@ -145,11 +148,13 @@ public class FrmProducto extends javax.swing.JFrame {
             add(btn);
         }
 
-        btnAgregar.setBounds(50,500,120,40);
-        btnActualizar.setBounds(190,500,120,40);
-        btnEliminar.setBounds(330,500,120,40);
-        btnBuscar.setBounds(470,500,120,40);
-        btnListar.setBounds(610,500,120,40);
+        
+        btnAgregar.setBounds(160, 500, 120, 40);
+        btnActualizar.setBounds(300, 500, 120, 40);
+        btnEliminar.setBounds(440, 500, 120, 40);
+        btnListar.setBounds(580, 500, 120, 40);
+        btnLimpiar.setBounds(720, 500, 120, 40);
+
 
         lblLista = new JLabel("LISTA DE PRODUCTOS");
         lblLista.setBounds(330,560,350,30);
@@ -271,6 +276,64 @@ public class FrmProducto extends javax.swing.JFrame {
         });
     }
 
+    public void limpiarCampos(){
+
+        txtNombre.setText("");
+        txtStock.setText("");
+        txtPrecio.setText("");
+        txtMinimo.setText("");
+        txtFecha.setText("");
+        txtUbicacion.setText("");
+
+    }
+    
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public JButton getBtnListar() {
+        return btnListar;
+    }
+
+    public JButton getBtnLimpiar() {
+        return btnLimpiar;
+    }
+    
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public JTextField getTxtStock() {
+        return txtStock;
+    }
+
+    public JTextField getTxtPrecio() {
+        return txtPrecio;
+    }
+
+    public JTextField getTxtMinimo() {
+        return txtMinimo;
+    }
+
+    public JTextField getTxtFecha() {
+        return txtFecha;
+    }
+
+    public JTextField getTxtUbicacion() {
+        return txtUbicacion;
+    }
+    
+    public JTable getTablaProductos() {
+        return tablaProductos;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
