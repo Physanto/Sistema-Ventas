@@ -107,5 +107,9 @@ public class Cliente {
         this.barrio = barrio;
     }
     
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
+    }
     
 }

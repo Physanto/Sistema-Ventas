@@ -9,21 +9,11 @@ package Principal;
  * @author hitim
  */
 
-import GUI.FrmCliente;
-import Controlador.ControladorCliente;
-
 
 public class Principal {
-
     public static void main(String[] args) {
-
-        FrmCliente vista = new FrmCliente();
-
-        ControladorCliente controlador =
-                new ControladorCliente(vista);
-
-        vista.setVisible(true);
-
+        java.awt.EventQueue.invokeLater(() -> {
+            new Vista.FrmMenu().setVisible(true);
+        });
     }
-
 }
